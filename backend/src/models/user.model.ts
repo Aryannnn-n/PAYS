@@ -1,19 +1,36 @@
-import { model, Schema } from 'mongoose';
+import mongoose from 'mongoose';
 
-const userSchema = new Schema({
-  firstName: {
+// Create a Schema for Users
+const userSchema = new mongoose.Schema({
+  username: {
     type: String,
     required: true,
-  },
-  lastName: {
-    type: String,
+    unique: true,
+    trim: true,
+    lowercase: true,
+    minLength: 3,
+    maxLength: 30,
   },
   password: {
     type: String,
     required: true,
+    minLength: 6,
+  },
+  firstName: {
+    type: String,
+    required: true,
+    trim: true,
+    maxLength: 50,
+  },
+  lastName: {
+    type: String,
+    required: true,
+    trim: true,
+    maxLength: 50,
   },
 });
 
-const UserModel = model('User', userSchema);
+// Create a model from the schema
+const UserModel = mongoose.model('User', userSchema);
 
 export { UserModel };
