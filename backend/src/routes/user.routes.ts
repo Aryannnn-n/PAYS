@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import {
+  filterFriends,
   signin,
   signup,
   updateProfile,
@@ -16,5 +17,8 @@ router.post('/signin', signin);
 
 // Profile Update
 router.patch('/update/profile', authMiddleware, updateProfile);
+
+// Filter Friends
+router.get('/get-friends', filterFriends);
 
 export default router;

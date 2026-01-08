@@ -165,4 +165,36 @@ const updateProfile = async (req: Request, res: Response) => {
   }
 };
 
-export { signin, signup, updateProfile };
+// /* -------------------------- FRIENDS FILTER ROUTE ------------------------- */
+const filterFriends = async (req: Request, res: Response) => {
+  const filter = (req.query.filter as string) || '';
+
+  try {
+    const query =
+      filter.trim() === '' // If empty return all users
+        ? {}
+        : {
+            // Otherwise search by firstName OR lastName
+            $or: [
+              // Match document field that CONTAINS the filter text
+              {
+                // $regex → partial match  -> rya -> Aryan
+                // 'i' → case-insensitive (John === john)
+                firstName: { $regex: filter, $options: 'i' },
+              },
+              {
+                lastName: { $regex: filter, $options: 'i' },
+              },
+            ],
+          };
+
+    const users = await UserModel.find(query);
+
+    res.status(200).json({ users });
+  } catch (error) {
+    console.error('Failed to find friends', error);
+    res.status(500).json({ message: 'Failed to find friends' });
+  }
+};
+
+export { filterFriends, signin, signup, updateProfile };
