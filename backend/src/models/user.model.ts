@@ -15,6 +15,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
     minLength: 6,
+    select: false, // Every request can't access the pass
   },
   firstName: {
     type: String,
