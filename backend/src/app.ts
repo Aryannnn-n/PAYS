@@ -2,6 +2,7 @@
 
 import cors from 'cors';
 import express from 'express';
+import AccountRouter from './routes/account.routes.js';
 import UserRouter from './routes/user.routes.js';
 
 const app = express();
@@ -18,5 +19,6 @@ app.get('/', (req, res) => {
 
 // Routes
 app.use('/api/user', UserRouter);
+app.use('/api/account', AccountRouter);
 
 export { app };

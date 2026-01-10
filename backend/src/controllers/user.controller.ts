@@ -2,6 +2,7 @@ import bcrypt from 'bcrypt';
 import type { Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 import z from 'zod';
+import { Account } from '../models/bank.model.js';
 import { UserModel } from '../models/user.model.js';
 
 /* ----------------------------- SIGNUP --------------------------- */
@@ -39,6 +40,11 @@ const signup = async (req: Request, res: Response) => {
       firstName,
       lastName,
       password: hashedPass,
+    });
+
+    // Bank account creation with default balance
+    await Account.create({
+      userId: user._id,
     });
 
     const token = jwt.sign(
