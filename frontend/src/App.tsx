@@ -1,9 +1,22 @@
-import React from 'react'
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Dashboard from './pages/Dashboard';
+import Signin from './pages/Signin';
+import Signup from './pages/Signup';
+import Transfer from './pages/Transfer';
 
 const App = () => {
   return (
-    <div>App</div>
-  )
-}
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/signup" element={<Signup />}></Route>
+          <Route path="/signin" element={<Signin />}></Route>
+          <Route path="/dashboard" element={<Dashboard />}></Route>
+          <Route path="/transfer" element={<Transfer />}></Route>
+        </Routes>
+      </BrowserRouter>
+    </>
+  );
+};
 
-export default App
+export default App;
