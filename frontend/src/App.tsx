@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Dashboard from './pages/Dashboard';
+import SendMoney from './pages/SendMoney';
 import Signin from './pages/Signin';
 import Signup from './pages/Signup';
 import Transfer from './pages/Transfer';
@@ -13,6 +14,7 @@ const App = () => {
           <Route path="/signin" element={<Signin />}></Route>
           <Route path="/dashboard" element={<Dashboard />}></Route>
           <Route path="/transfer" element={<Transfer />}></Route>
+          <Route path="/send" element={<SendMoney />} />
         </Routes>
       </BrowserRouter>
     </>

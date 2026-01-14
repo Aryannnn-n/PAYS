@@ -6,6 +6,8 @@ const router = Router();
 
 // Get Balance
 router.get('/balance', authMiddleware, getBalance);
+
+// Transfer Funds
 router.post('/transfer', authMiddleware, transfer);
 
 export default router;
